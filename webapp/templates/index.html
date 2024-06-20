@@ -13,6 +13,17 @@
         </div>
       <div class="row">
         <div class="col">
+
+          {% with messages = get_flashed_messages() %}
+              {% if messages %}
+              <div class="alert alert-warning" role="alert">
+                  {% for message in messages %}
+                      {{ message }}<br>
+                  {% endfor %}
+              </div>
+              {% endif %}
+          {% endwith %}
+
           <ul>
             {% if news_python %}
               {% for news in news_python %}
@@ -24,6 +35,7 @@
               К сожалению сайт новостей сейчас недоступен
             {% endif%}
           </ul>
+
         </div>
         <div class="col-4">
           {% if weather %}
