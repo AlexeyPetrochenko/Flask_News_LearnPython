@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+    <div class="row">
+      <div class="col h1 text-center">{{ page_title }}</div>
+    </div>
+  <div class="row">
+    <div class="col">
+
+      {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          <div class="alert alert-warning" role="alert">
+              {% for message in messages %}
+                  {{ message }}<br>
+              {% endfor %}
+          </div>
+          {% endif %}
+      {% endwith %}
+
+      <ul>
+        {% if news_python %}
+          {% for news in news_python %}
+            <h4><a href="{{ news.url }}">{{ news.title }}</a></h4>
+            <p>{{ news.published.strftime("%d.%m.%Y") }}</p>
+            <hr>
+          {% endfor %}
+        {% else %}
+          К сожалению сайт новостей сейчас недоступен
+        {% endif%}
+      </ul>
+
+    </div>
+    <div class="col-4">
+      {% if weather %}
+        Сейчас в Рославле {{ weather.lang_ru[0].value }} температура {{ weather.temp_C }}C ощущается как {{ weather.FeelsLikeC }}C
+      {% else %}
+        К сожалению сервис погоды недоступен
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
