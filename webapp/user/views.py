@@ -4,6 +4,7 @@ from flask import render_template, flash, url_for, redirect, Blueprint
 from webapp.user.models import User
 from webapp.user.forms import LoginForm, RegistrationForm
 from webapp.db import db
+from webapp.utils import get_redirect_target
 
 
 blueprint = Blueprint('user', __name__, url_prefix='/user')
@@ -27,9 +28,9 @@ def process_login():
         if user and user.check_password(form.password.data):
             login_user(user)
             flash('Вы успешно авторизовались')
-            return redirect(url_for('news.index'))
+            return redirect(get_redirect_target())
     flash('Неверный логин или пароль')
-    return redirect(url_for('news.index'))
+    return redirect(url_for('user.login'))
 
 
 @blueprint.route('/logout')
@@ -37,6 +38,7 @@ def logout():
     logout_user()
     flash('Вы успешно вышли из сессии')
     return redirect(url_for('news.index'))
+
 
 @blueprint.route('/register')
 def register():

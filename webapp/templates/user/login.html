@@ -18,7 +18,7 @@
             {% endif %}
         {% endwith %}
 
-        <form action="{{ url_for('user.process_login') }}" method="POST">
+        <form action="{{ url_for('user.process_login', next=request.values.get('next')) }}" method="POST">
             {{ form.hidden_tag() }}
             <div class="mb-3">
                 {{ form.username.label }}

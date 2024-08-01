@@ -22,7 +22,7 @@
         {% if news_python %}
           {% for news in news_python %}
             <h4><a href="{{ url_for('news.single_news', news_id=news.id) }}">{{ news.title }}</a></h4>
-            <p>{{ news.published.strftime("%d.%m.%Y") }}</p>
+            <p>{{ news.published.strftime("%d.%m.%Y") }} | Комментарии {{ news.comments_count() }}</p>
             <hr>
           {% endfor %}
         {% else %}

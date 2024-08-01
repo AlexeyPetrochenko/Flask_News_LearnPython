@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 from datetime import datetime
-import platform
 
 from webapp.news.parsers.utils import get_html, save_news
 from webapp.news.models import News
